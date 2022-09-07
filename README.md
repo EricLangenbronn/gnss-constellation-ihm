@@ -1,1 +1,1 @@
-# gnss-constellation-ihm
+# gnss.constellation.ihm
