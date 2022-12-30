@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          Period of time
+        </h6>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <period-of-time id="periodOfTime"></period-of-time>
+          </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          Elevation mask
+        </h6>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <elevation-mask id="elevationMask"></elevation-mask>
+          </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          Ground station
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <lla id="lla"></lla>
+          </li>
+        </ul>
+
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <button mat-button id="sendRequest" type="submit" class="btn btn-lg btn-primary"
+              (click)="loadSatelliteData()">Execute</button>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Graphic visible satellite</h1>
+      </div>
+
+      <highcharts [satellitesVisibles]="satellitesVisibles" [eventUpdateSatellitesVisibles]="changedSatellitesVisibles">
+      </highcharts>
+
+    </main>
+  </div>
+</div>

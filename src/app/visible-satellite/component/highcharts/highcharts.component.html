@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-1 col-centered">
+                <mat-radio-group [(ngModel)]="favoritChoise" class="radio-group">
+                    <!-- [checked]="idx === 0" -->
+                    <mat-radio-button *ngFor="let value of graphicChoises" [value]="value" (change)="displayGraphe(value)" class="radio-button">
+                        {{value}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div [chart]="currentChartOptions"></div>
+            </div>
+        </div>
+    </div>
+</div>

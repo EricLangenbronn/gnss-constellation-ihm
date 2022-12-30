@@ -1,0 +1,16 @@
+<mat-form-field>
+  <mat-label>Elevation mask</mat-label>
+  <input type="text" matInput #elevationMaskInput name="elevationMask" placeholder="Elevation mask in degrees"
+    [formControl]="elevationMaskFormControl" />
+  <span matSuffix>&nbsp;°</span>
+
+  <mat-error *ngIf="elevationMaskFormControl.hasError('required')">
+    Elevation mask is <strong>required</strong>
+  </mat-error>
+  <mat-error *ngIf="elevationMaskFormControl.hasError('pattern')">
+    Please enter a valid elevation mask
+  </mat-error>
+  <mat-error *ngIf="elevationMaskFormControl.hasError('elevationMaskValue')">
+    Elevation mask must be between 0.0 and 90.0
+  </mat-error>
+</mat-form-field>

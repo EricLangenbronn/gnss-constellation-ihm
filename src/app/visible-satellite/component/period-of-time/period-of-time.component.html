@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <div>
+      <mat-form-field appearance="fill">
+        <mat-label class="sr-only" for="startOfMeasure">Start time of measurement</mat-label>
+        <input matInput [(ngModel)]="startDate" [matDatepicker]="datepickerStartTime" id="startOfMeasure"
+          name="startOfMeasure" placeholder="Start time of measurement" required>
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="datepickerStartTime"></mat-datepicker-toggle>
+        <mat-datepicker #datepickerStartTime></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label class="sr-only" for="endOfMeasure">End time of measurement</mat-label>
+        <input matInput [(ngModel)]="endDate" [matDatepicker]="datepickerEndTime" id="endOfMeasure" name="endOfMeasure"
+          placeholder="End time of measurement" required>
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="datepickerEndTime"></mat-datepicker-toggle>
+        <mat-datepicker #datepickerEndTime></mat-datepicker>
+      </mat-form-field>
+
+  </div>
+</div>
