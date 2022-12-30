@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { VisibleSatelliteComponentModule } from "./visible-satellite/visible-satellite.module";
 import { DatePipe } from '@angular/common';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 
 
@@ -20,6 +21,7 @@ import { DatePipe } from '@angular/common';
     VisibleSatelliteComponentModule
   ],
   providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
     DatePipe
   ],
   declarations: [

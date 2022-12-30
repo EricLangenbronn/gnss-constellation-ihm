@@ -77,7 +77,6 @@ export class HighchartsComponent implements OnInit {
       );
   }
 
-
   private getGraphiqueBarreSeries(satellitesVisibles: Satellite[]): number[] { // TODO refacto avec la meme méthode que getCategories()
     const extractPositionsOfAllSatellites: Map<Date, Position>[] = satellitesVisibles.flatMap(visibleSat => visibleSat.getPositionsByTime());
     const series: number[] = [];
