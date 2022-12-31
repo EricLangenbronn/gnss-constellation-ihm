@@ -1,11 +1,11 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatButton } from '@angular/material/button';
-import { ElevationMaskComponent } from './component/elevationMask/elevation-mask.component';
+import { ElevationMaskComponent } from './component/elevation-mask/elevation-mask.component';
 import { HighchartsComponent } from './component/highcharts/highcharts.component';
-import { LlaComponent } from './component/lla/lla.component';
+import { GroundStationComponent } from './component/ground-station/ground-station.component';
 import { PeriodOfTimeComponent } from './component/period-of-time/period-of-time.component';
 import { Satellite } from './repository/dto/satellite/satellite';
-import { Parameters } from './repository/dto/request/parameters';
+import { VisibleSatelliteRequest } from './repository/dto/request/visible-satellite-request';
 import { SatelliteRepository } from './repository/satellite.repository';
 
 
@@ -21,7 +21,7 @@ export class VisibleSatelliteComponent implements AfterViewInit {
 
   @ViewChild(ElevationMaskComponent, { static: false }) elevationMaskComponent!: ElevationMaskComponent;
   @ViewChild(PeriodOfTimeComponent, { static: false }) periodOfTimeComponent!: PeriodOfTimeComponent;
-  @ViewChild(LlaComponent, { static: false }) LlaComponent!: LlaComponent;
+  @ViewChild(GroundStationComponent, { static: false }) groundStationComponent!: GroundStationComponent;
   @ViewChild(HighchartsComponent, { static: false }) highchartsComponent!: HighchartsComponent;
   @ViewChild(MatButton, { static: false }) executeBtn!: MatButton;
 
@@ -34,18 +34,11 @@ export class VisibleSatelliteComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-
   }
 
   loadSatelliteData() {
 
-    let parameters = new Parameters();
-    parameters.startDateOfMeasure = "1387666800"; // "" + (new Date(Date.UTC(2013, 12, 22, 0, 0, 0, 0))).getTime() / 1000;
-    parameters.endDateOfMeasure = "1387753199"; // "" + (new Date(Date.UTC(2013 , 12, 22, 23, 59, 59, 0))).getTime() / 1000;
-    parameters.elevationMask = 15.0;
-    parameters.altitude = 130.049;
-    parameters.latitude = 38.889139;
-    parameters.longitude = -77.049;
+    let parameters = new VisibleSatelliteRequest(this.periodOfTimeComponent.getObservationPeriod(), this.groundStationComponent.getGroundStation(), this.elevationMaskComponent.getElevationMask());
 
     this.satelliteRepository.getSateliteVisibleBySatellite(parameters)
       .subscribe(satellitesVisibles => {

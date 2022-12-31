@@ -70,6 +70,7 @@ export class HighchartsComponent implements OnInit {
 
 
   private getGraphiqueBarreCategories(satellitesVisibles: Satellite[]): Date[] {
+    // Attention, on perd l'ordre dans la liste en faisant ça
     return satellitesVisibles
       .flatMap(visibleSat => [...visibleSat.getPositionsByTime().keys()])
       .filter((date, i, self) =>

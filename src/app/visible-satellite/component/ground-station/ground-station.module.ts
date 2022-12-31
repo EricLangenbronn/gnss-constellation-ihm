@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 
-import { LlaComponent } from './lla.component';
+import { GroundStationComponent, GroundStation } from './ground-station.component';
 
 @NgModule({
   imports: [
@@ -14,7 +14,7 @@ import { LlaComponent } from './lla.component';
     MatInputModule,
     MatRadioModule
   ],
-  exports: [LlaComponent],
-  declarations: [LlaComponent]
+  exports: [GroundStationComponent],
+  declarations: [GroundStationComponent]
 })
-export class LlaComponentModule { }
+export class GroundStationComponentModule { }

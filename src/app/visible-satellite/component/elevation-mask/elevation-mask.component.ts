@@ -1,14 +1,18 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormControl, Validators } from '@angular/forms';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
 import { map } from 'rxjs/internal/operators/map';
 
-class ElevationMask {
-  private elevationMask: Number;
+export class ElevationMask {
+  private elevationMask: number;
 
-  constructor(elevationMask: Number) {
-    this.elevationMask = elevationMask;
+  constructor(elevationMask: number) {
+    if (elevationMask) {
+      this.elevationMask = elevationMask;
+    } else {
+      this.elevationMask = 15.0;
+    }
   }
 
   public getElevationMask() {
@@ -24,14 +28,14 @@ class ElevationMask {
 })
 export class ElevationMaskComponent implements AfterViewInit {
 
+  @Input() elevationMask: ElevationMask = new ElevationMask(15.0);
+  @Output() eventUpdateElevationMask: EventEmitter<ElevationMask> = new EventEmitter<ElevationMask>();
+
   @ViewChild('elevationMaskInput', { read: ElementRef }) elevationMaskInput!: ElementRef<HTMLInputElement>;
 
-  elevationMaskFormControl = new FormControl('', [Validators.required, Validators.pattern('(\\+)?\\d{1,2}\\.?\\d{0,1}'), this.elevationMaskValueValidator]);
-
-  private elevationMask: ElevationMask;
+  elevationMaskFormControl = new FormControl(this.elevationMask.getElevationMask(), [Validators.required, Validators.pattern('(\\+)?\\d{1,2}\\.?\\d{0,1}'), this.elevationMaskValueValidator]);
 
   constructor() {
-    this.elevationMask = new ElevationMask(0);
   }
 
   ngAfterViewInit(): void {
@@ -40,10 +44,12 @@ export class ElevationMaskComponent implements AfterViewInit {
         distinctUntilChanged(),
         map(() => {
           if (this.elevationMaskFormControl.valid) {
-            this.elevationMask = new ElevationMask(new Number(this.elevationMaskInput.nativeElement.value));
+            this.elevationMask = new ElevationMask(Number.parseFloat(this.elevationMaskInput.nativeElement.value));
           } else {
-            this.elevationMask = new ElevationMask(0);
+            this.elevationMask = new ElevationMask(15.0);
           }
+
+          this.eventUpdateElevationMask.emit(this.elevationMask);
         })
       )
       .subscribe();

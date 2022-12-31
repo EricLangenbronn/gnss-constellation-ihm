@@ -1,22 +1,12 @@
-<div class="panel panel-default">
-  <div>
-      <mat-form-field appearance="fill">
-        <mat-label class="sr-only" for="startOfMeasure">Start time of measurement</mat-label>
-        <input matInput [(ngModel)]="startDate" [matDatepicker]="datepickerStartTime" id="startOfMeasure"
-          name="startOfMeasure" placeholder="Start time of measurement" required>
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="datepickerStartTime"></mat-datepicker-toggle>
-        <mat-datepicker #datepickerStartTime></mat-datepicker>
-      </mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Enter a date range</mat-label>
+  <mat-date-range-input [formGroup]="rangeFromControl" [rangePicker]="dateRangepicker">
+    <input #matStartDate matStartDate formControlName="start" placeholder="Start date">
+    <input #matEndDate matEndDate formControlName="end" placeholder="End date">
+  </mat-date-range-input>
+  <mat-datepicker-toggle matIconSuffix [for]="dateRangepicker"></mat-datepicker-toggle>
+  <mat-date-range-picker #dateRangepicker></mat-date-range-picker>
 
-      <mat-form-field appearance="fill">
-        <mat-label class="sr-only" for="endOfMeasure">End time of measurement</mat-label>
-        <input matInput [(ngModel)]="endDate" [matDatepicker]="datepickerEndTime" id="endOfMeasure" name="endOfMeasure"
-          placeholder="End time of measurement" required>
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="datepickerEndTime"></mat-datepicker-toggle>
-        <mat-datepicker #datepickerEndTime></mat-datepicker>
-      </mat-form-field>
-
-  </div>
-</div>
+  <mat-error *ngIf="rangeFromControl.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+  <mat-error *ngIf="rangeFromControl.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+</mat-form-field>

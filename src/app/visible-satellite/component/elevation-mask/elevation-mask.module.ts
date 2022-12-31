@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 
-import { ElevationMaskComponent } from './elevation-mask.component';
+import { ElevationMaskComponent, ElevationMask } from './elevation-mask.component';
 
 @NgModule({
   imports: [

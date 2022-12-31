@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label class="sr-only" for="longitudeInput">Base position, longitude in degrees</mat-label>
+      <input matInput [(ngModel)]="groundStation.longitude" id="longitudeInput" name="longitudeInput" placeholder="Longitude in degrees"
+        required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label class="sr-only" for="latitudeInput">Base position, latitude in degrees</mat-label>
+      <input matInput [(ngModel)]="groundStation.latitude" id="latitudeInput" name="latitudeInput" placeholder="Latitude in degrees" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label class="sr-only" for="altitudeInput">Base position, altitude in meters</mat-label>
+      <input matInput [(ngModel)]="groundStation.altitude" id="altitudeInput" name="altitudeInput" placeholder="Altitude in meters" required />
+    </mat-form-field>
+  </div>
+</div>

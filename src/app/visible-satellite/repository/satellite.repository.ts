@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Satellite } from './dto/satellite/satellite';
-import { Parameters } from './dto/request/parameters';
+import { VisibleSatelliteRequest } from './dto/request/visible-satellite-request';
 import { environment } from '../../../environments/environment';
 
 
@@ -19,7 +19,7 @@ export class SatelliteRepository {
 
   constructor(private _httpClient: HttpClient) { }
 
-  public getSateliteVisibleBySatellite(parameters: Parameters): Observable<Satellite[]> {
+  public getSateliteVisibleBySatellite(parameters: VisibleSatelliteRequest): Observable<Satellite[]> {
 
     return this._httpClient.get<Satellite[]>("http://localhost:8080/api/visibleSat", { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), params: this.convertToHttpParams(parameters) })
       .pipe(
@@ -30,15 +30,15 @@ export class SatelliteRepository {
       );
   }
 
-  private convertToHttpParams(parameters: Parameters): HttpParams {
+  private convertToHttpParams(parameters: VisibleSatelliteRequest): HttpParams {
     return new HttpParams({
       fromObject: {
-        'startDateOfMeasure': parameters.startDateOfMeasure,
-        'endDateOfMeasure': parameters.endDateOfMeasure,
-        'elevationMask': parameters.elevationMask.toString(),
-        'longitude': parameters.longitude.toString(),
-        'latitude': parameters.latitude.toString(),
-        'altitude': parameters.altitude.toString()
+        'startDateOfMeasure': parameters.getStartDateOfMeasure(),
+        'endDateOfMeasure': parameters.getEndDateOfMeasure(),
+        'elevationMask': parameters.getElevationMask(),
+        'longitude': parameters.getLongitude(),
+        'latitude': parameters.getLatitude(),
+        'altitude': parameters.getAltitude()
       }
     })
   }

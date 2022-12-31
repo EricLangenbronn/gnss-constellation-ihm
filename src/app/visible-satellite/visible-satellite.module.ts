@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 
 import { PeriodOfTimeComponentModule } from './component/period-of-time/period-of-time.module';
-import { LlaComponentModule } from './component/lla/lla.module';
+import { GroundStationComponentModule } from './component/ground-station/ground-station.module';
 import { HighchartsComponentModule } from './component/highcharts/highcharts.module';
-import { ElevationMaskComponentModule } from './component/elevationMask/elevation-mask.module';
+import { ElevationMaskComponentModule } from './component/elevation-mask/elevation-mask.module';
 
 import { VisibleSatelliteComponent } from './visible-satellite.component';
 
@@ -11,7 +11,7 @@ import { VisibleSatelliteComponent } from './visible-satellite.component';
 @NgModule({
   imports: [
     PeriodOfTimeComponentModule,
-    LlaComponentModule,
+    GroundStationComponentModule,
     ElevationMaskComponentModule,
     HighchartsComponentModule
   ],
