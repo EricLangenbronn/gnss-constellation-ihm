@@ -36,8 +36,8 @@ export class SatelliteRepository {
         'startDateOfMeasure': parameters.getStartDateOfMeasure(),
         'endDateOfMeasure': parameters.getEndDateOfMeasure(),
         'elevationMask': parameters.getElevationMask(),
-        'longitude': parameters.getLongitude(),
-        'latitude': parameters.getLatitude(),
+        'decimalLongitudeDegree': parameters.getLongitude(),
+        'decimalLatitudeDegree': parameters.getLatitude(),
         'altitude': parameters.getAltitude()
       }
     })

@@ -70,15 +70,15 @@ export class HighchartsComponent implements OnInit {
 
 
   private getGraphiqueBarreCategories(satellitesVisibles: Satellite[]): Date[] {
-    // Attention, on perd l'ordre dans la liste en faisant ça
     return satellitesVisibles
       .flatMap(visibleSat => [...visibleSat.getPositionsByTime().keys()])
       .filter((date, i, self) =>
         self.findIndex(d => d.getTime() === date.getTime()) === i
-      );
+      )
+      .sort((d1, d2) => d1.getTime() - d2.getTime());
   }
 
-  private getGraphiqueBarreSeries(satellitesVisibles: Satellite[]): number[] { // TODO refacto avec la meme méthode que getCategories()
+  private getGraphiqueBarreSeries(satellitesVisibles: Satellite[]): number[] {
     const extractPositionsOfAllSatellites: Map<Date, Position>[] = satellitesVisibles.flatMap(visibleSat => visibleSat.getPositionsByTime());
     const series: number[] = [];
     for (let currentDate of this.getGraphiqueBarreCategories(satellitesVisibles)) {
